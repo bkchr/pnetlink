@@ -5,8 +5,7 @@ use pnet::packet::PrimitiveValues;
 pub struct Netlink {
     length: u32le,
     kind: u16le, // NOOP | ERROR | DONE | OVERRUN
-    #[construct_with(u16le)]
-    flags: NetlinkMsgFlags,
+    #[construct_with(u16le)] flags: NetlinkMsgFlags,
     seq: u32le,
     pid: u32le,
     #[payload]
@@ -17,8 +16,7 @@ pub struct Netlink {
 #[packet]
 pub struct NetlinkError {
     error: u32le, // must be i32le
-    #[payload]
-    payload: Vec<u8>,
+    #[payload] payload: Vec<u8>,
 }
 
 impl PrimitiveValues for NetlinkMsgFlags {
